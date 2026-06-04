@@ -1,0 +1,11 @@
+# CMake y builds
+build/
+cmake-build-*/
+CMakeCache.txt
+CMakeFiles/
+Makefile
+*.exe
+*.out
+*.o
+*.obj
+__pycache__/
