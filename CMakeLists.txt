@@ -7,9 +7,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include_directories(include)
 
-# ejecutable demo
+# Demos
 add_executable(demos_module 
-    demos/demos_Range_Module.cpp 
+    demos/demos_range_module.cpp 
     src/RangeModule.cpp
 )
 # Tests

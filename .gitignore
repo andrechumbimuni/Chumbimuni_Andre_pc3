@@ -9,3 +9,4 @@ Makefile
 *.o
 *.obj
 __pycache__/
+.vscode/
