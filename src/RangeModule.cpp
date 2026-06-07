@@ -17,10 +17,10 @@ void RangeModule::limpiar(Treap* nodo) {
 void RangeModule::dividir_derecha(Treap* t, Treap*& l, Treap*& r, int val) {
     if (!t) { l = r = nullptr; return; }
     if (t->derecha < val) {
-        dividir_derecha(t->hijoDerecho, l, r, val);
+        dividir_derecha(t->hijoDerecho, t->hijoDerecho, r, val);
         l = t;
     } else {
-        dividir_derecha(t->hijoIzquierdo, l, r, val);
+        dividir_derecha(t->hijoIzquierdo, l, t->hijoIzquierdo, val);
         r = t;
     }
 }
@@ -29,10 +29,10 @@ void RangeModule::dividir_derecha(Treap* t, Treap*& l, Treap*& r, int val) {
 void RangeModule::dividir_izquierda(Treap* t, Treap*& l, Treap*& r, int val) {
     if (!t) { l = r = nullptr; return; }
     if (t->izquierda < val) {
-        dividir_izquierda(t->hijoDerecho, l, r, val);
+        dividir_izquierda(t->hijoDerecho, t->hijoDerecho, r, val);
         l = t;
     } else {
-        dividir_izquierda(t->hijoIzquierdo, l, r, val);
+        dividir_izquierda(t->hijoIzquierdo, l, t->hijoIzquierdo, val);
         r = t;
     }
 }
