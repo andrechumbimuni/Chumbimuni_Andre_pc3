@@ -16,7 +16,21 @@
 - Creación del archivo `benchmark/benchmark_range_module.cpp` implementando únicamente el esqueleto de la función `main`.
 - Resolución de errores de enlazado de C++ (`undefined reference to 'main'`) implementando el main a el tests, benchmark y demo.
 
-## Día 4: (Hoy)
+## Día 4:
 -Arreglando el error de punteros por referencia en las funciones de partición para evitar la ruptura de los enlaces del árbol donde `RangeModule.cpp`en `dividir_derecha` y `dividir_izquierda` para correr el `benchmark_range_module.cpp`.
 - Implementación de pruebas  `test_range_module.cpp` cubriendo casos borde: solapamientos parciales, colisiones adyacentes y absorción total.
 - Codificación del benchmark utilizando `<chrono>` para realizar 5 bloques de operaciones de inserción, búsqueda y borrado para demostrar la complejidad amortizada de $O(\log n)$ por operación (crecimiento total $O(N \log N)$), evidenciando optimizaciones a nivel de hardware (Cache Locality y Branch Prediction).
+
+## Día 5: (Hoy)
+- Problema trabajado: Formalización de la validación matemática de la estructura, alineación de las pruebas unitarias con la rúbrica y redacción de la sustentación teórica.
+- Se reestructuró `test_range_module.cpp` para empaquetar las aserciones en 6 funciones independientes que representan casos de uso específicos.
+- Pruebas agregadas: Se implementaron y documentaron 6 casos de prueba estrictos:
+  1. Estructura vacía (frontera).
+  2. Caso mínimo (inserción y consulta básica).
+  3. Adyacencia/empates (fusión matemática de bordes).
+  4. Fragmentación (perforación del centro de un rango).
+  5. Absorción masiva (reemplazo de solución ingenua).
+  6. Validación del invariante de disyunción y Max-Heap.
+- Cambios importantes: 
+  - Redacción de `docs/respuestas_obligatorias.md` y creacion de `docs/pruebas.md` con la justificación técnica.
+  - Limpieza final del `README.md` eliminando las instrucciones de la rúbrica y estableciendo enlaces limpios a la documentación.

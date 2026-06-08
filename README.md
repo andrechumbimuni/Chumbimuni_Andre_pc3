@@ -10,21 +10,25 @@
 https://github.com/kapumota/CC-232/blob/main/Practicas/Practica3_CC232/Problemas-Evaluacion3.csv
 
 ### Relación con Semanas 4-6
-Semana principal:
-Estructura usada:
-Estructura de la librería cc232 relacionada:
+- Semana principal: Semana 6 (Priority Queues, Heaps mezclables y Treaps).
+- Estructura usada: Treap (Árbol de Búsqueda Binaria Aleatorizado).
+- Estructura de la librería cc232 relacionada: `Treap.h` (correspondiente al contenido de Semana 6), apoyado en los conceptos base de `BinarySearchTree` y `BinaryHeap` reutilizados desde `Semana5/include`.
 
 ### Resumen de la solución
-Explica la idea central de la solución sin copiar el enunciado del juez.
-Debe quedar claro qué problema se resuelve, qué estrategia se usa y por qué la estructura elegida es adecuada.
+El problema LeetCode 715 (Range Module) requiere gestionar un conjunto de intervalos semiabiertos `[left, right)` soportando adiciones, consultas y eliminaciones masivas sobre un rango de valores muy grande (hasta 10^9). 
+
+Para solucionarlo, se implementó un Treap donde cada nodo almacena un intervalo disjunto. Al realizar las operaciones `addRange` o `removeRange`, se utilizan las operaciones fundamentales del Treap: `dividir` (split) y `intersectar/unir` (merge). En una inserción, los intervalos solapados se fusionan en un único nodo extendido. En una eliminación, si un intervalo cubre la zona a borrar, este se fragmenta en dos nodos separados. El Treap mantiene la estructura óptima, evitando la degradación a O(n).
 
 ## Invariante principal
-
+Todo nodo dentro de la estructura Treap debe cumplir estrictamente:
+1. **Propiedad de BST (Árbol de Búsqueda Binaria):** Los nodos están ordenados por su límite izquierdo (`left`). El hijo izquierdo tiene intervalos que inician antes que el nodo actual, y el hijo derecho tiene intervalos que inician después.
+2. **Propiedad de Max-Heap:** La prioridad aleatoria generada para un nodo padre siempre es mayor o igual a la prioridad de sus nodos hijos, garantizando el balanceo del árbol.
+3. **Disyunción:** Ningún par de nodos en el árbol tiene rangos que se solapen. Si se tocan o cruzan, son obligatoriamente fusionados en un solo nodo.
 
 ## Complejidad
-* **Tiempo por operación:
-* **Tiempo total:
-* **Espacio:*
+* **Tiempo por operación:** O(log n) amortizado para las operaciones `addRange`, `queryRange` y `removeRange`, donde `n` es la cantidad de intervalos disjuntos activos en el árbol (gracias al balanceo probabilístico del Treap).
+* **Tiempo total:** O(N log n) esperado para procesar una secuencia de `N` operaciones.
+* **Espacio:** O(n) en el peor de los casos, donde `n` es el número máximo de intervalos fragmentados disjuntos almacenados simultáneamente.
 
 ## Archivos relevantes
 * `include/`: Contiene `RangeModule.h` con la definición del nodo y la clase.
@@ -36,7 +40,7 @@ Debe quedar claro qué problema se resuelve, qué estrategia se usa y por qué l
 * `resultados/`: Contendrá los logs de las pruebas y casos borde.
 
 ## Limpieza del repositorio
-
+Se creó un archivo `.gitignore` configurado específicamente para proyectos en C++ con CMake. Este archivo ignora automáticamente la carpeta `build/`, los binarios generados (`.exe`, `.o`), y archivos de configuración del IDE (como `.vscode/`), garantizando que el repositorio de Git se mantenga limpio.
 
 ## Compilación
 El proyecto compila desde una copia limpia usando CMake:
@@ -46,99 +50,27 @@ cmake --build build
 ```
 ## Ejecución
 
-Indica el comando exacto para ejecutar el programa principal.
+El proyecto genera distintos módulos ejecutables para pruebas, demostración y análisis de rendimiento.
+Para ejecutar las pruebas unitarias automatizadas (validación de casos borde):
 
 ```bash
-./build/nombre_del_programa
+./build/test_module
 ```
-
-## Pruebas
-
-Describe al menos 5 pruebas, incluyendo casos borde.
-
-Cada prueba debe indicar:
-
-- entrada usada;
-- salida esperada;
-- salida obtenida;
-- qué aspecto valida.
-
-Ejemplo de lista mínima:
-
-1. Caso mínimo.
-2. Caso con estructura vacía, frontera o ausencia de respuesta.
-3. Caso con duplicados o empates.
-4. Caso extremo pequeño verificable manualmente.
-5. Caso comparado contra una solución ingenua, si aplica.
-
-## Evidencia Git
-
-El video debe iniciar mostrando el historial de commits, fechas, archivos modificados y explicación del proceso real de desarrollo.
-
-Comandos obligatorios:
-
+Para ejecutar el análisis de rendimiento (demostración de complejidad O(log n)):
 ```bash
-git status
-git log --date=short --pretty=format:"%ad - %h - %an - %s"
-git log --date=short --pretty=format:"%ad" | sort | uniq -c
-git log --graph --oneline --decorate --all
-git log --date=short --name-status --pretty=format:"%ad - %h - %s" -- Semana4 Semana5 Semana6 Practicas practica-calificada3
-git log --date=short --stat --pretty=format:"%ad - %h - %s"
+./build/benchmark_module
 ```
 
-El estudiante debe explicar:
-
-- qué commits corresponden a actividades de clase;
-- qué commits corresponden a la práctica calificada;
-- qué archivos cambiaron;
-- qué pruebas se agregaron;
-- qué errores se corrigieron;
-- por qué el historial demuestra trabajo progresivo.
-
-## Preguntas obligatorias
-
-El estudiante debe responder lo que se pide en las preguntas obligatorias.  
-No basta con describir el código de forma libre.
-
-Debe responder explícitamente:
-
-- las preguntas comunes;
-- las preguntas específicas de su problema;
-- la relación con Semanas 4-6;
-- el invariante;
-- la complejidad;
-- los casos borde;
-- la modificación grabada.
-
-Si el estudiante omite estas preguntas y solo describe código, la evidencia se considera incompleta.
-
-## Bitácora obligatoria
-
-Debe existir el archivo:
-
-```text
-docs/bitacora.md
+Para ejecutar la demostración general del programa:
+```bash
+./build/demos_module
 ```
 
-La bitácora debe resumir el proceso real de desarrollo:
-
-- día de avance;
-- problema trabajado;
-- estructura implementada;
-- errores encontrados;
-- pruebas agregadas;
-- cambios importantes;
-- relación con commits.
-
-## Respuestas obligatorias
-
-Debe existir el archivo:
-
-```text
-docs/respuestas_obligatorias.md
-```
-
-Este archivo debe contener respuestas claras y numeradas a las preguntas comunes y específicas del problema asignado.
+## Documentación y Evidencias
+Cumpliendo con los requisitos de la rúbrica, la documentación detallada se encuentra en la carpeta `docs/`:
+- **[Bitácora de Desarrollo](docs/bitacora.md):** Historial del proceso, errores, soluciones y progreso diario.
+- **[Respuestas Obligatorias](docs/respuestas_obligatorias.md):** Justificación teórica.
+- **[Reporte de Pruebas](docs/pruebas.md):** Detalle de los 6 casos de prueba.
 
 ## Declaración de autoría
 
