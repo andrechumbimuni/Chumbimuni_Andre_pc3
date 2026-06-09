@@ -1,0 +1,8 @@
+Ejecutando Suite de Pruebas (Treap)
+1. test_estructura_vacia superado.
+2. test_caso_minimo superado.
+3. test_empates_adyacencia superado.
+4. test_fragmentacion_borrado superado.
+5. test_absorcion_masiva superado.
+6. test_invariante_disyuncion superado.
+Todos los tests pasaron correctamente.

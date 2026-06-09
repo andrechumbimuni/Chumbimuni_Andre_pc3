@@ -1,12 +1,37 @@
-# CMake y builds
+# carpetas
 build/
 cmake-build-*/
+Debug/
+Release/
+x64/
+bin/
+
+#ejecutables
+.exe
+.out
+.app
+
+#archivos objetos
+.o
+.obj
+.a
+.so
+.dll
+.dylib
+.lib
+
+#archivos generados por cmake dentro de la carpeta build
 CMakeCache.txt
+cmake_install.cmake
 CMakeFiles/
 Makefile
-*.exe
-*.out
-*.o
-*.obj
+
+#carpetas basura
 __pycache__/
+.pytest_cache__/
 .vscode/
+.idea/
+.DS_Store
+
+#archivos de log
+*.log

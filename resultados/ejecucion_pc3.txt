@@ -1,0 +1,9 @@
+BENCHMARK DE RANGE MODULE (TREAP)
+N (Datos)   Add Total(ms)     Add/Op (ns)       Query/Op (ns)     Rem/Op (ns)       
+
+10000       4.14542           414.542           183.981           649.346           
+50000       8.8646            177.292           110.233           559.651           
+100000      18.8781           188.781           117.039           580.935           
+500000      108.925           217.85            128.315           689.143           
+1000000     228.847           228.847           135.71            696.804           
+Queda demostrada la complejidad logaritmica O(log n).

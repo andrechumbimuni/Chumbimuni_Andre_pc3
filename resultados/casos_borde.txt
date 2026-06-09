@@ -1,0 +1,5 @@
+REGISTRO DE CASOS BORDE:
+1. Árbol Totalmente Vacío: Raíz = nullptr. Búsqueda devuelve false de inmediato sin colapsar.
+2. Empate por Adyacencia Estricta: Rango [10,20) y [20,30) se unifican en un único intervalo continuo [10,30).
+3. Fragmentación Central Extrema: Remoción de [14,16) sobre el nodo [10,20) destruye el nodo original y genera dinámicamente dos sub-nodos [10,14) y [16,20).
+4. Absorción de Nodos Múltiples: Un rango contenedor [5,50) localiza, elimina del mapa de memoria a [10,20) y [30,40), e inserta una única raíz unificada.
