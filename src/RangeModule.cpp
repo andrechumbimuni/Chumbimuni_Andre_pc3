@@ -16,13 +16,9 @@ void RangeModule::limpiar(Treap* nodo) {
 
 // Corta el árbol en dos: los que terminan antes de 'val', y el resto.
 void RangeModule::dividir_derecha(Treap* t, Treap*& l, Treap*& r, int val) {
-
-    assert(val <= 1000000000); // Reto Transversal 1: Assert de seguridad física
-    if (t != nullptr) {
-        // Reto Transversal 2: Impresión de estado interno útil para depuración
-        // Reto Específico: Instrumentación activa de una operación crítica
-        std::cout << "[DEBUG LIVE] Dividiendo derecha en nodo: [" 
-                  << t->izquierda << ", " << t->derecha << ") con valor: " << val << "\n";
+    assert(val<=1000000000);
+    if(t!=nullptr) {
+        std::cout << "Dividiendo derecha en nodo : [" << t->izquierda<< " , " << t->derecha << ") con valor :" << val << "\n";
     }
 
     if (!t) { l = r = nullptr; return; }
