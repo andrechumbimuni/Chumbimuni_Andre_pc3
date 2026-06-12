@@ -70,6 +70,21 @@ Para ejecutar la demostración general del programa:
 Cumpliendo con los requisitos de la rúbrica, la documentación detallada se encuentra en la carpeta `docs/`:
 - **[Bitácora de Desarrollo](docs/bitacora.md):** Historial del proceso, errores, soluciones y progreso diario.
 - **[Respuestas Obligatorias](docs/respuestas_obligatorias.md):** Justificación teórica.
+
+### Índice de Conceptos Sustentados en el Documento:
+1. ADT vs. Implementación Concreta (Diferencia entre la interfaz abstracta y el Treap físico).
+2. Invariante de Estructura (Propiedades lógicas de BST, Max-Heap y Disyunción).
+3. Complejidad por Operación (Justificación matemática del costo promedio $O(\log n)$).
+4. Complejidad Espacial (Optimización a nivel de memoria RAM acotada en $O(n)$).
+5. Peor Caso vs. Costo Amortizado (Análisis probabilístico frente a degradación estructural).
+6. Treap como BST y Heap (Mecanismo dual de balanceo sin rotaciones pesadas).
+7. Prioridades Aleatorias (Demostración matemática de la altura esperada del árbol).
+8. Intervalos Disjuntos (Lógica de unificación ante solapamientos tangenciales).
+9. Casos Borde (Comportamiento ante estructuras vacías, adyacencias exactas y fragmentación).
+10. Correctitud Observable (Validación empírica mediante aserciones automáticas en la suite).
+11. API Pública vs. Representación Interna (Encapsulamiento y ocultamiento de punteros).
+12. Pruebas contra Fuerza Bruta (Auditoría continua del árbol para mitigar regresiones).
+
 - **[Reporte de Pruebas](docs/pruebas.md):** Detalle de los 6 casos de prueba.
 
 ## Declaración de autoría

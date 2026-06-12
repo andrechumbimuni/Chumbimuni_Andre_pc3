@@ -16,7 +16,7 @@
 - Creación del archivo `benchmark/benchmark_range_module.cpp` implementando únicamente el esqueleto de la función `main`.
 - Resolución de errores de enlazado de C++ (`undefined reference to 'main'`) implementando el main a el tests, benchmark y demo.
 
-## Día 4: (Hoy)
+## Día 4:
 -Arreglando el error de punteros por referencia en las funciones de partición para evitar la ruptura de los enlaces del árbol donde `RangeModule.cpp`en `dividir_derecha` y `dividir_izquierda` para correr el `benchmark_range_module.cpp`.
 - Implementación de pruebas  `test_range_module.cpp` cubriendo casos borde: solapamientos parciales, colisiones adyacentes y absorción total.
 - Codificación del benchmark utilizando `<chrono>` para realizar 5 bloques de operaciones de inserción, búsqueda y borrado para demostrar la complejidad amortizada de $O(\log n)$ por operación (crecimiento total $O(N \log N)$), evidenciando optimizaciones a nivel de hardware (Cache Locality y Branch Prediction).
@@ -34,8 +34,15 @@
   - Redacción de `docs/respuestas_obligatorias.md` y creacion de `docs/pruebas.md` con la justificación técnica.
   - Limpieza final del `README.md` eliminando las instrucciones de la rúbrica y estableciendo enlaces limpios a la documentación.
 
-  ## Día 5: 
+  ## Día 5:
 - Problema trabajado: agregando partes faltantes en .gitignore
   - Ampliación del benchmark de estrés para evaluar hasta 1,000,000 de operaciones consecutivas.
 - Cambios importantes: 
   - Agregando de los archivos en carpeta resultados `tests_pc3.txt`, `ejecucion_pc3.txt`, `casos_borde.txt`.
+
+  ## Día 6: (Hoy)
+- Problema trabajado: Sistematización de la evidencia empírica, auditoría de invariantes en base a las métricas reales y redacción del reporte técnico para asegurar los criterios de la rúbrica.
+- Estructura modificada: Ninguna a nivel de código fuente. Se creó y redactó en su totalidad el archivo analítico `resultados/resultados.md`.
+- Análisis y decisiones tomadas: - Se trasladaron los outputs exactos obtenidos en la terminal de desarrollo (`demos_module`, `test_module` y `benchmark_module`) hacia el reporte de resultados para garantizar el principio de Consistencia de Datos exigido por la evaluación.
+  - Se realizó una interpretación científica de bajo nivel sobre las métricas del benchmark. Se documentó cómo el tiempo por operación disminuyó de ~414 ns (para 10k datos) a ~195 ns (para 1M de datos), justificándolo teóricamente a través de la amortización del overhead de alocación dinámica de memoria (`new`) y la optimización de la localidad de caché de la CPU.
+  - Se estructuró la tabla comparativa de pesos de los binarios (`-O3` vs `-O0`) para sustentar cómo el compilador optimiza el tamaño y rendimiento mediante técnicas de *Inlining* y *Loop Unrolling*.
