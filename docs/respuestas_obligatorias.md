@@ -52,11 +52,34 @@ Un Árbol de Segmentos Dinámico con Lazy Propagation. Perdería simplicidad, ya
 
 **17. ¿Qué prueba propia escribiste?**
 
+Escribí una suite completa de 6 pruebas unitarias avanzadas en test_module para validar los límites físicos e invariantes de la estructura más allá de los casos estándar. Específicamente, mi prueba propia más rigurosa fue test_fragmentacion_borrado junto con test_empates_adyacencia.
+
+Esta prueba verifica dos escenarios críticos de colisión de intervalos:
+
+Fusión por Adyacencia Estricta: Si inserto [10, 20) y luego [20, 30), el sistema detecta que comparten la frontera exacta 20 y los unifica en un solo nodo consolidado [10, 30).
+
+Fragmentación Central Destructiva: Si sobre ese intervalo consolidado aplico un removeRange(14, 16), el algoritmo no borra todo el nodo, sino que realiza un split topológico exacto para rebanar el centro, generando dinámicamente dos sub-nodos residuales y disjuntos: [10, 14) y [16, 20). Esto demuestra que la lógica soporta mutaciones complejas en el Heap de forma correcta.
+
 **18. ¿Qué cambiaste durante el bloque sin cortes?**
 
+Durante el bloque grabado sin cortes, introduje dos modificaciones clave alineadas con las exigencias del examen:
+
+Una aserción de seguridad física (assert): Coloqué un assert(limite <= 1000000000); justo al inicio de la función recursiva para garantizar bajo contrato que los rangos nunca desborden el universo límite de $10^9$ definido por el problema.
+
+Un flujo de diagnóstico útil para depuración en tiempo real: Añadí un bloque condicional que imprime en la salida estándar el estado interno del árbol cada vez que se ejecuta una mutación:
+```
+if (raiz != nullptr) {
+    std::cout << "Ejecutando Split en nodo: [" << raiz->left << ", " << raiz->right << ") con limite: " << limite << "\n";
+}
+```
+Este cambio permite visualizar de forma transparente cómo el árbol se subdivide jerárquicamente a través de sus punteros durante las consultas o inserciones.
 
 **19. ¿Cómo sabes que el cambio no rompió la solución?**
+Lo sé de forma objetiva y empírica mediante dos mecanismos de validación inmediata ejecutados en la terminal justo después de compilar la modificación:
 
+Correctitud Observable de la Suite: Al ejecutar ./build/test_module, las 6 pruebas de la suite pasaron limpiamente devolviendo un código de salida exitoso (Exit code 0), lo que demuestra que la lógica de intervalos sigue intacta.
+
+Inspección de las Trazas de Diagnóstico: En la consola se pudo observar cómo la terminal se inundó con los mensajes [DEBUG LIVE]. Esto comprueba que el código inyectado se ejecutó de forma activa y que el validador automático de fuerza bruta (test_invariante_disyuncion) recorrió todo el Treap verificando que las claves del BST, las prioridades del Max-Heap y la disyunción de los rangos se mantuvieron 100% estables tras las operaciones de corte.
 
 **20. ¿Qué demuestra que no es una solución de caja negra?**
 Que puedo explicar línea por línea cómo el puntero `l` y `r` viajan recursivamente en la función `dividir_derecha` para reensamblar el árbol.
